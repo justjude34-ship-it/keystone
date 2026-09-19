@@ -3,271 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keystone · Jones Method</title>
+<title>Keystone — Jones Numerology</title>
 <style>
-  :root{
-    --bg:#0e0f13; --panel:#161821; --panel2:#1d2030; --line:#2a2e3d;
-    --txt:#e8eaf2; --muted:#8b90a5; --accent:#c9a227; --accent2:#7c5cbf;
-    --good:#4caf7a; --warn:#e0a14a; --bad:#d96b6b;
-  }
+  :root{--bg:#0e0f14;--card:#171a22;--line:#2a2f3a;--txt:#e8eaf0;--dim:#8b90a0;--acc:#c9a227;--acc2:#7c5cbf}
   *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    background:var(--bg);color:var(--txt);line-height:1.5;-webkit-font-smoothing:antialiased}
-  header{padding:18px 16px 14px;border-bottom:1px solid var(--line);position:sticky;top:0;
-    background:rgba(14,15,19,.92);backdrop-filter:blur(8px);z-index:10}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5}
+  header{padding:18px 16px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
   header h1{margin:0;font-size:20px;letter-spacing:.5px}
-  header .sub{color:var(--muted);font-size:12px;margin-top:2px}
-  main{max-width:680px;margin:0 auto;padding:16px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
-  .card h2{margin:0 0 12px;font-size:15px;color:var(--accent);text-transform:uppercase;letter-spacing:1px}
-  label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px}
-  input{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);
-    background:var(--panel2);color:var(--txt);font-size:15px}
-  input:focus{outline:none;border-color:var(--accent)}
-  .row{display:flex;gap:10px}
-  .row>div{flex:1}
-  button{width:100%;margin-top:14px;padding:13px;border:none;border-radius:10px;
-    background:linear-gradient(135deg,var(--accent),#a8841f);color:#1a1400;font-weight:700;
-    font-size:15px;cursor:pointer}
-  button:active{transform:scale(.99)}
-  .core{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;
-    border-bottom:1px solid var(--line)}
-  .core:last-child{border-bottom:none}
-  .core .n{font-size:22px;font-weight:700;color:var(--accent)}
-  .core .t{font-size:13px;color:var(--muted)}
-  .tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;margin-left:6px;
-    background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
-  .tag.master{background:rgba(124,92,191,.18);color:#c9b6f0;border-color:var(--accent2)}
-  .tag.karmic{background:rgba(224,161,74,.15);color:var(--warn);border-color:var(--warn)}
-  .reading{font-size:14px;color:var(--txt);margin-top:6px}
-  .reading b{color:var(--accent)}
-  .muted{color:var(--muted);font-size:12px}
-  .pill{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;margin:2px 4px 2px 0;
-    background:var(--panel2);border:1px solid var(--line)}
-  .pill.hot{background:rgba(201,162,39,.15);border-color:var(--accent);color:var(--accent)}
-  footer{text-align:center;color:var(--muted);font-size:11px;padding:18px 16px 40px}
-  .hidden{display:none}
-  .badge{font-size:11px;color:var(--muted)}
+  header p{margin:2px 0 0;color:var(--dim);font-size:12px}
+  main{max-width:640px;margin:0 auto;padding:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+  label{display:block;font-size:12px;color:var(--dim);margin:10px 0 4px}
+  input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0c0e14;color:var(--txt);font-size:16px}
+  button{width:100%;padding:14px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--acc),#a8841f);color:#1a1400;font-weight:700;font-size:16px;margin-top:14px;cursor:pointer}
+  button.sec{background:transparent;border:1px solid var(--line);color:var(--txt);margin-top:8px}
+  .core{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line)}
+  .core:last-child{border:0}
+  .core .n{font-size:22px;font-weight:700;color:var(--acc)}
+  .core .t{font-size:13px;color:var(--dim)}
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;background:var(--acc2);color:#fff;margin-left:6px}
+  .reading{font-size:14px;color:#cdd2de}
+  .reading b{color:var(--acc)}
+  .small{font-size:12px;color:var(--dim)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  footer{text-align:center;color:var(--dim);font-size:11px;padding:20px}
 </style>
 </head>
 <body>
 <header>
   <h1>Keystone</h1>
-  <div class="sub">Numerology · Jones method · runs on your device</div>
+  <p>Numerology · Jones method · everything stays on your device</p>
 </header>
 <main>
   <div class="card">
-    <h2>Birth details</h2>
-    <label>Full name (birth certificate)</label>
-    <input id="name" value="Judith Anne Crighton" placeholder="First Middle Last">
-    <div class="row">
-      <div>
-        <label>Day</label>
-        <input id="day" type="number" min="1" max="31" value="27">
-      </div>
-      <div>
-        <label>Month</label>
-        <input id="month" type="number" min="1" max="12" value="12">
-      </div>
-      <div>
-        <label>Year</label>
-        <input id="year" type="number" min="1" max="2100" value="1957">
-      </div>
+    <label>First name</label>
+    <input id="fn" value="Judith">
+    <label>Middle name</label>
+    <input id="mn" value="Anne">
+    <label>Last name</label>
+    <input id="ln" value="Crighton">
+    <div class="grid2">
+      <div><label>Day</label><input id="d" value="27"></div>
+      <div><label>Month</label><input id="m" value="12"></div>
     </div>
-    <button id="cast">Cast this chart</button>
-    <div class="badge" id="status" style="margin-top:10px"></div>
+    <label>Year</label>
+    <input id="y" value="1957">
+    <button onclick="cast()">Cast this chart</button>
+    <button class="sec" onclick="loadDemo()">Load demo</button>
   </div>
-
-  <div id="out" class="hidden">
-    <div class="card">
-      <h2>The five core numbers</h2>
-      <div id="cores"></div>
-    </div>
-    <div class="card">
-      <h2>Readings</h2>
-      <div id="readings"></div>
-    </div>
-    <div class="card">
-      <h2>Also on the chart</h2>
-      <div id="extras"></div>
-    </div>
-  </div>
+  <div id="out"></div>
 </main>
-<footer>Inspired by Dr. Steve G. Jones' calculation method. Original readings. Not his course material.</footer>
-
+<footer>Keystone · inspired by Dr. Steve G. Jones · self-help reflection only</footer>
 <script>
-const PY = {A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
-const VOWELS = new Set("AEIOU");
-function reduce(n, keepMaster){
-  let x = Math.abs(n);
-  while(x > 9){
-    if(keepMaster && (x===11||x===22)) break;
-    x = String(x).split("").reduce((a,b)=>a+Number(b),0);
-  }
-  return x;
+const PY={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
+const VOW="AEIOU";
+function red(n,keep){n=Math.abs(n);let g=n;while(g>9&&!(keep&&(g===11||g===22)))g=String(g).split("").reduce((a,b)=>a+ +b,0);return g;}
+function nameVal(s,only){s=(s||"").toUpperCase().replace(/[^A-Z]/g,"");let t=0;for(const c of s){if(only=="v"&&!VOW.includes(c))continue;if(only=="c"&&VOW.includes(c))continue;t+=PY[c]||0;}return t;}
+function parts(s){return (s||"").toUpperCase().split(/[\s-]+/).filter(Boolean);}
+function reduceName(s,only){let tot=0;for(const p of parts(s)){tot+=red(nameVal(p,only));}return red(tot);}
+function lp(d,m,y){const mm=red(m),dd=red(+d),yy=+y,yr=red(yy,true);return{mm,dd,yr,tot:mm+dd+yr,lp:red(mm+dd+yr,true)};}
+function cast(){
+  const fn=document.getElementById("fn").value,mn=document.getElementById("mn").value,ln=document.getElementById("ln").value;
+  const d=+document.getElementById("d").value,m=+document.getElementById("m").value,y=+document.getElementById("y").value;
+  const L=lp(d,m,y);
+  const bd=red(d,true), bdc=red(d);
+  const exp=reduceName(fn+" "+mn+" "+ln), sou=reduceName(fn+" "+mn+" "+ln,"v"), per=reduceName(fn+" "+mn+" "+ln,"c");
+  const gr=red(nameVal(fn)), mat=red(L.lp+exp,true);
+  const full=(fn+" "+mn+" "+ln).toUpperCase();
+  let counts={};for(const c of full){if(PY[c])counts[PY[c]]=(counts[PY[c]]||0)+1;}
+  const miss=[1,2,3,4,5,6,7,8,9].filter(n=>!counts[n]);
+  const pass=Object.entries(counts).filter(([n,c])=>c>=3).map(([n])=>+n);
+  const K={13:"effort without shortcuts",14:"abuse of freedom",16:"ego & humility",19:"abuse of power"};
+  const karm=[];for(const p of parts(full)){const v=nameVal(p);if(K[v])karm.push(p+": "+K[v]);}
+  const R={1:"Pioneer — you initiate. Lead, but learn to listen.",2:"Diplomat — you cooperate. Don't disappear into the room.",3:"Creator — you express. Channel it or it scatters.",4:"Builder — you structure. Don't become rigid.",5:"Messenger — you change. Freedom needs a chosen limit.",6:"Caretaker — you nurture. Keep a chair for yourself.",7:"Seeker — you study. Come back out with what you found.",8:"Power — you achieve. Power without compassion turns cold.",9:"Humanitarian — you complete. Finish, then release.",11:"Intuitive master — insight is real; ground it.",22:"Master builder — big visions, patient hands."};
+  const tag=n=>n===11||n===22?'<span class="tag">master</span>':n===33?'<span class="tag">6 (33→6)</span>':"";
+  let h=`<div class="card"><h3 style="margin:0 0 6px">The five core numbers</h3>
+  <div class="core"><div><b>Life Path</b> ${tag(L.lp)}<div class="t">month ${L.mm} + day ${L.dd} + year ${L.yr}</div></div><div class="n">${L.tot}/${L.lp}</div></div>
+  <div class="core"><div><b>Birthday</b><div class="t">compound ${bdc}, reduced ${bd}</div></div><div class="n">${bdc}/${bd}</div></div>
+  <div class="core"><div><b>Expression</b><div class="t">every letter</div></div><div class="n">${exp}</div></div>
+  <div class="core"><div><b>Soul Urge</b><div class="t">vowels</div></div><div class="n">${sou}</div></div>
+  <div class="core"><div><b>Personality</b><div class="t">consonants</div></div><div class="n">${per}</div></div></div>`;
+  h+=`<div class="card"><h3 style="margin:0 0 6px">Readings</h3>
+  <p class="reading"><b>Life Path ${L.lp}.</b> ${R[L.lp]||""}</p>
+  <p class="reading"><b>Expression ${exp}.</b> ${R[exp]||""}</p>
+  <p class="reading"><b>Soul Urge ${sou}.</b> ${R[sou]||""}</p>
+  <p class="reading"><b>Personality ${per}.</b> ${R[per]||""}</p>
+  <p class="reading small">Growth (first name): ${gr}. Maturity: ${mat}. Hidden passion: ${pass.length?pass.join(", "):"none"}. Secret self (missing): ${miss.length?miss.join(", "):"none — no gaps."}</p>
+  ${karm.length?`<p class="reading small"><b>Karmic lessons:</b> ${karm.join(" · ")}</p>`:""}</div>`;
+  document.getElementById("out").innerHTML=h;
 }
-function compound(n){
-  let x = Math.abs(n), parts=[];
-  while(x>0){ parts.unshift(x%10); x=Math.floor(x/10); }
-  return parts;
-}
-function reduceName(name, mode){
-  let total=0, letters=[];
-  for(const ch of name.toUpperCase()){
-    if(!PY[ch]) continue;
-    const isV = VOWELS.has(ch);
-    if(mode==='vowels' && !isV) continue;
-    if(mode==='consonants' && isV) continue;
-    if(ch==='Y'){
-      const hasOtherV = [...name.toUpperCase()].some(c=>VOWELS.has(c));
-      if(mode==='vowels' && hasOtherV) continue;
-      if(mode==='consonants' && !hasOtherV) continue;
-    }
-    total += PY[ch]; letters.push(ch);
-  }
-  return {total, letters};
-}
-function nameParts(full){
-  return full.trim().split(/\s+/).filter(Boolean);
-}
-function calc(fullName, day, month, year){
-  const parts = nameParts(fullName);
-  const m = reduce(month,true), d = reduce(day,true), y = reduce(year,true);
-  const lpCompound = m+d+y;
-  const lp = reduce(lpCompound,true);
-  const bdCompound = day;
-  const bd = reduce(day,true);
-  let exprTotal=0, exprParts=[];
-  parts.forEach(p=>{ const r=reduceName(p,'all'); exprTotal+=reduce(r.total,true); exprParts.push({p, r:reduce(r.total,true)}); });
-  const expr = reduce(exprTotal,true);
-  let soulTotal=0; parts.forEach(p=>{ const r=reduceName(p,'vowels'); soulTotal+=r.total; });
-  const soul = reduce(soulTotal,true);
-  let persTotal=0; parts.forEach(p=>{ const r=reduceName(p,'consonants'); persTotal+=r.total; });
-  const pers = reduce(persTotal,true);
-  const mat = reduce(lp+expr,true);
-  const growth = parts[0] ? reduce(reduceName(parts[0],'all').total,true) : 0;
-  const py = reduce(m + reduce(day,true) + reduce(2+0+2+6,true), true);
-  const karmic = new Set([13,14,16,19]);
-  const flags = [];
-  [lpCompound, bdCompound, exprTotal, soulTotal, persTotal].forEach((v,i)=>{
-    if(karmic.has(v)) flags.push(['Life Path','Birthday','Expression','Soul Urge','Personality'][i]+' '+v);
-  });
-  const present = new Set();
-  parts.forEach(p=>[...p.toUpperCase()].forEach(c=>{ if(PY[c]) present.add(PY[c]); }));
-  const missing = [1,2,3,4,5,6,7,8,9].filter(n=>!present.has(n));
-  const freq={}; parts.forEach(p=>[...p.toUpperCase()].forEach(c=>{ if(PY[c]) freq[PY[c]]=(freq[PY[c]]||0)+1; }));
-  let passion=0, max=0; for(const k in freq){ if(freq[k]>max){max=freq[k];passion=+k;} }
-  const secret = missing.length===0 ? 9 : missing.length;
-  const cores=[lp,expr,pers].sort((a,b)=>a-b);
-  const eff = 10 - Math.min(9, (cores[2]-cores[0]));
-  return {lp,lpCompound,bd,bdCompound,expr,exprTotal,exprParts,soul,soulTotal,pers,persTotal,
-    mat,growth,py,flags,missing,passion,secret,eff,m,d,y};
-}
-const READ = {
-  lp:{1:"Pioneer — you lead by starting. Independence is your fuel; the lesson is to let others in without losing the spark.",
-      2:"Diplomat — you hold rooms together. Sensitivity is your gift; the shadow is absorbing what isn't yours.",
-      3:"Creator — expression is your native tongue. Joy is the work; the trap is scattering.",
-      4:"Builder — you make things last. Order is your strength; rigidity is the cost.",
-      5:"Messenger — change is your element. Freedom with a spine; the lesson is chosen limits.",
-      6:"Caretaker — you tend the hearth. Responsibility is love in action; the shadow is over-giving.",
-      7:"Seeker — the inner life is the road. Study, question, return with what you found.",
-      8:"Power — you handle resources and authority. Ambition with ethics; the trap is control.",
-      9:"Humanitarian — the wide view. Compassion that has thought it through; the lesson is release.",
-      11:"Illuminator (master) — intuition amplified. Insight that arrives before proof.",
-      22:"Master builder (master) — vision made practical. You can build what others only dream."},
-  bd:{1:"A 1 birthday: initiative stamped on the day. You arrive ready to begin.",
-      2:"A 2 birthday: cooperation is in the bones. Partnership finds you.",
-      3:"A 3 birthday: creativity arrives with the calendar. Expression is expected of you.",
-      4:"A 4 birthday: structure is your default. You build from day one.",
-      5:"A 5 birthday: restlessness is native. Change keeps the day alive.",
-      6:"A 6 birthday: responsibility is the gift. Home and care come naturally.",
-      7:"A 7 birthday: the inner life is the birthday present. Reflection is your rhythm.",
-      8:"An 8 birthday: power and material sense arrive early. You handle weight well.",
-      9:"A 9 birthday: the humanitarian view is stamped on the day. You see the whole.",
-      11:"An 11 birthday: intuition is the birthday gift. Insight before evidence.",
-      22:"A 22 birthday: master-builder energy from day one. Vision with a blueprint."},
-  expr:{1:"Destiny: to lead and initiate. The world asks you to start things.",
-        2:"Destiny: to cooperate and harmonise. The world asks you to connect.",
-        3:"Destiny: to create and express. The world asks you to speak.",
-        4:"Destiny: to build and organise. The world asks you to structure.",
-        5:"Destiny: to experience and change. The world asks you to move.",
-        6:"Destiny: to care and serve. The world asks you to tend.",
-        7:"Destiny: to seek and understand. The world asks you to know.",
-        8:"Destiny: to master resources. The world asks you to handle power.",
-        9:"Destiny: to give and complete. The world asks you to release.",
-        11:"Destiny (master): to illuminate. Insight is your calling.",
-        22:"Destiny (master): to build at scale. Vision made real is your work."},
-  soul:{1:"You want to lead from the inside. Independence is the heart's wish.",
-        2:"You want harmony and to be truly met. Partnership is the heart's wish.",
-        3:"You want to create and be heard. Expression is the heart's wish.",
-        4:"You want to build something solid. Security is the heart's wish.",
-        5:"You want freedom and experience. Movement is the heart's wish.",
-        6:"You want to love and be needed. A real hearth is the heart's wish.",
-        7:"You want truth and understanding. The inner life is the heart's wish.",
-        8:"You want achievement and worth. Mastery is the heart's wish.",
-        9:"You want to give and complete. Compassion is the heart's wish.",
-        11:"You want to see clearly. Intuition is the heart's wish.",
-        22:"You want to build what matters. Vision is the heart's wish."},
-  pers:{1:"The room meets initiative first. You arrive as a starter.",
-         2:"The room meets gentleness first. You arrive as a harmoniser.",
-         3:"The room meets expression first. You arrive as a spark.",
-         4:"The room meets steadiness first. You arrive as a foundation.",
-         5:"The room meets movement first. You arrive as a messenger.",
-         6:"The room meets care first. You arrive as a nurturer.",
-         7:"The room meets depth first. You arrive as a thinker.",
-         8:"The room meets authority first. You arrive as a force.",
-         9:"The room meets generosity first. You arrive as a giver.",
-         11:"The room meets presence first. You arrive as an illuminator.",
-         22:"The room meets vision first. You arrive as a builder."}
-};
-function tag(n, compound){
-  let t='';
-  if(n===11||n===22) t+='<span class="tag master">master '+n+'</span>';
-  if([13,14,16,19].includes(compound)) t+='<span class="tag karmic">karmic '+compound+'</span>';
-  return t;
-}
-function render(c){
-  const cores = [
-    ['Life Path', c.lp, c.lpCompound, 'lp'],
-    ['Birthday', c.bd, c.bdCompound, 'bd'],
-    ['Expression', c.expr, c.exprTotal, 'expr'],
-    ['Soul Urge', c.soul, c.soulTotal, 'soul'],
-    ['Personality', c.pers, c.persTotal, 'pers']
-  ];
-  document.getElementById('cores').innerHTML = cores.map(([label,n,comp,key])=>
-    `<div class="core"><div><div style="font-weight:600">${label} ${tag(n,comp)}</div>
-     <div class="t">${READ[key][n]||''}</div></div>
-     <div class="n">${comp}/${n}</div></div>`).join('');
-  const readings = [
-    ['Life Path', c.lp, 'lp'],['Birthday', c.bd, 'bd'],['Expression', c.expr, 'expr'],
-    ['Soul Urge', c.soul, 'soul'],['Personality', c.pers, 'pers']
-  ];
-  document.getElementById('readings').innerHTML = readings.map(([label,n,key])=>
-    `<div style="margin-bottom:12px"><b>${label} ${n}</b> — ${READ[key][n]||''}</div>`).join('');
-  const extras = [];
-  extras.push(`<span class="pill">Maturity ${c.mat}</span>`);
-  extras.push(`<span class="pill">Growth ${c.growth}</span>`);
-  extras.push(`<span class="pill hot">Personal Year 2026 → ${c.py}</span>`);
-  extras.push(`<span class="pill">Hidden Passion ${c.passion}</span>`);
-  extras.push(`<span class="pill">Secret Self ${c.secret}</span>`);
-  extras.push(`<span class="pill">Effectiveness ${c.eff}/10</span>`);
-  if(c.missing.length) extras.push(`<span class="pill">Missing: ${c.missing.join(', ')}</span>`);
-  else extras.push(`<span class="pill hot">No missing numbers 1–9</span>`);
-  if(c.flags.length) extras.push(`<div class="muted" style="margin-top:8px">Karmic curriculum: ${c.flags.join('; ')}</div>`);
-  document.getElementById('extras').innerHTML = extras.join(' ');
-  document.getElementById('out').classList.remove('hidden');
-}
-document.getElementById('cast').addEventListener('click', ()=>{
-  const name = document.getElementById('name').value.trim();
-  const day = +document.getElementById('day').value;
-  const month = +document.getElementById('month').value;
-  const year = +document.getElementById('year').value;
-  if(!name || !day || !month || !year){ document.getElementById('status').textContent='Fill in name and date.'; return; }
-  const c = calc(name, day, month, year);
-  render(c);
-  document.getElementById('status').textContent = 'Chart cast · nothing uploaded · saved on this device only.';
-});
-window.addEventListener('load', ()=> document.getElementById('cast').click());
+function loadDemo(){document.getElementById("fn").value="Judith";document.getElementById("mn").value="Anne";document.getElementById("ln").value="Crighton";document.getElementById("d").value="27";document.getElementById("m").value="12";document.getElementById("y").value="1957";cast();}
+loadDemo();
 </script>
 </body>
 </html>
