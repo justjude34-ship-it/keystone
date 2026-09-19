@@ -1,0 +1,13 @@
+{
+  "name": "Keystone — Jones Numerology",
+  "short_name": "Keystone",
+  "description": "Five core numbers after the method of Dr. Steve G. Jones. Life Path, Expression, Soul Urge, Personality, Birthday. Calculated on this device.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07080c",
+  "theme_color": "#07080c",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Keystone">
+  <defs>
+    <linearGradient id="g" x1="18" y1="8" x2="110" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7ec8c0"/>
+      <stop offset=".55" stop-color="#d4b46a"/>
+      <stop offset="1" stop-color="#c4b5fd"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#07080c"/>
+  <path fill="url(#g)" d="M64 18l34 18v28c0 22-14 40-34 48-20-8-34-26-34-48V36z"/>
+  <path fill="#07080c" d="M64 34l20 10v18c0 14-8 26-20 31-12-5-20-17-20-31V44z"/>
+  <text x="64" y="78" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#d4b46a">5</text>
+</svg>
