@@ -1,426 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#07080c">
-  <meta name="description" content="Keystone — five core numbers after the method of Dr. Steve G. Jones. Life Path, Expression, Soul Urge, Personality, Birthday. Calculated on this device.">
-  <title>Keystone — Jones Numerology</title>
-  <link rel="manifest" href="./manifest.json">
-  <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="./icon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #07080c;
-      --card: #10131b;
-      --ink: #f4efe6;
-      --muted: #b7b0a4;
-      --gold: #d4b46a;
-      --teal: #7ec8c0;
-      --violet: #c4b5fd;
-      --line: rgba(212,180,106,.22);
-      --lesson: #f9a8d4;
-      --warn: #fdba74;
-      --good: #7ec8c0;
-    }
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: Outfit, system-ui, sans-serif;
-      line-height: 1.55;
-    }
-    body:before {
-      content: "";
-      position: fixed; inset: 0; z-index: -1; pointer-events: none;
-      background:
-        radial-gradient(720px 380px at 8% -10%, rgba(126,200,192,.14), transparent 55%),
-        radial-gradient(640px 360px at 96% 0%, rgba(196,181,253,.12), transparent 50%),
-        radial-gradient(500px 280px at 50% 100%, rgba(212,180,106,.08), transparent 55%);
-    }
-    .wrap { max-width: 820px; margin: 0 auto; padding: 1rem 1rem 6.8rem; }
-    header.app { text-align: center; padding: .55rem 0 1rem; }
-    .pill {
-      display: inline-block;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: .22rem .7rem;
-      font-size: .68rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: #d7d0c4;
-      margin-bottom: .4rem;
-    }
-    .wordmark {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(2.4rem, 10vw, 3.6rem);
-      margin: 0;
-      letter-spacing: .02em;
-      background: linear-gradient(120deg, var(--teal), var(--gold), var(--violet), var(--teal));
-      background-size: 220% 220%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shimmer 9s ease-in-out infinite;
-    }
-    .tag { color: var(--muted); margin: .25rem 0 0; font-size: .92rem; }
-    @keyframes shimmer { 0%,100%{background-position:0 50%} 50%{background-position:100% 50%} }
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 1rem 1rem 1.1rem;
-      margin: 0 0 1rem;
-    }
-    .kicker {
-      font-size: .7rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin: 0 0 .3rem;
-    }
-    h2 {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.7rem;
-      margin: .1rem 0 .55rem;
-      font-weight: 600;
-    }
-    h3 {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.25rem;
-      margin: 0 0 .35rem;
-      color: var(--violet);
-    }
-    label {
-      display: block;
-      font-size: .72rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin: .65rem 0 .28rem;
-    }
-    input, select {
-      width: 100%;
-      background: #0b0a10;
-      color: var(--ink);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: .72rem .8rem;
-      font: inherit;
-    }
-    input:focus, select:focus { outline: 1px solid var(--gold); }
-    .row2, .row3 { display: grid; gap: .65rem; }
-    .row2 { grid-template-columns: 1fr 1fr; }
-    .row3 { grid-template-columns: 1fr 1fr 1fr; }
-    @media (max-width: 620px) {
-      .row2, .row3 { grid-template-columns: 1fr; }
-    }
-    .hint { color: var(--muted); font-size: .8rem; margin: .35rem 0 0; }
-    .actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .85rem; }
-    button { font: inherit; border: 0; border-radius: 999px; padding: .68rem 1.1rem; cursor: pointer; }
-    .primary {
-      background: linear-gradient(120deg, var(--teal), var(--gold));
-      color: #102019;
-      font-weight: 600;
-    }
-    .ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
-    .tiny {
-      background: rgba(8,10,20,.55);
-      color: var(--ink);
-      border: 1px solid var(--line);
-      padding: .45rem .8rem;
-      font-size: .82rem;
-    }
-    .lockrow {
-      display: flex; align-items: center; gap: .45rem;
-      margin-top: .45rem; color: var(--muted); font-size: .8rem;
-    }
-    .lockrow input { width: auto; }
-    .tiles { display: flex; flex-wrap: wrap; gap: .4rem; margin: .7rem 0 .2rem; min-height: 0; }
-    .tile {
-      background: #0b0a10;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: .35rem .5rem;
-      min-width: 2.6rem;
-      text-align: center;
-    }
-    .tile .L {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.25rem;
-      line-height: 1;
-      color: var(--teal);
-    }
-    .tile .v { font-size: .68rem; color: var(--gold); letter-spacing: .04em; }
-    .tile.V { border-color: rgba(126,200,192,.4); }
-    .tile.C { border-color: rgba(196,181,253,.3); }
-    .inc { display: grid; grid-template-columns: repeat(9, 1fr); gap: .28rem; margin: .55rem 0 .2rem; }
-    .inc i {
-      display: block; text-align: center;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: .35rem .1rem;
-      font-style: normal;
-    }
-    .inc i b { display: block; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.05rem; }
-    .inc i.karmic { border-color: rgba(249,168,212,.5); color: var(--lesson); }
-    .inc i.above { border-color: rgba(126,200,192,.45); color: var(--good); }
-    .strip {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: .4rem;
-      margin: .8rem 0 .2rem;
-    }
-    @media (max-width: 620px) { .strip { grid-template-columns: repeat(3, 1fr); } }
-    .num {
-      background: #0b0a10;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: .55rem .3rem;
-      text-align: center;
-    }
-    .num b {
-      display: block;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.45rem;
-      color: var(--gold);
-      line-height: 1.1;
-    }
-    .num span {
-      display: block;
-      font-size: .62rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: .15rem;
-    }
-    .num.master { box-shadow: 0 0 0 1px var(--gold) inset; }
-    .num.karmic b { color: var(--lesson); }
-    .tabs {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: .3rem;
-      padding: .45rem .6rem calc(.55rem + env(safe-area-inset-bottom));
-      background: rgba(7,8,12,.92);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid var(--line);
-    }
-    .tabs button {
-      border-radius: 14px;
-      padding: .55rem .2rem;
-      font-size: .72rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid transparent;
-    }
-    .tabs button.on {
-      color: #102019;
-      background: linear-gradient(120deg, var(--teal), var(--gold));
-      font-weight: 600;
-    }
-    [hidden] { display: none !important; }
-    .cards { display: grid; gap: .65rem; }
-    .scard {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: .85rem;
-      background: #0b0a10;
-    }
-    .scard summary {
-      cursor: pointer;
-      list-style: none;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.2rem;
-    }
-    .scard summary::-webkit-details-marker { display: none; }
-    .scard .meta { color: var(--gold); font-size: .82rem; margin: .15rem 0 .45rem; }
-    .badge {
-      display: inline-block;
-      border-radius: 999px;
-      padding: .08rem .45rem;
-      font-size: .62rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-left: .35rem;
-      border: 1px solid var(--line);
-      color: var(--gold);
-      vertical-align: middle;
-    }
-    .badge.k { color: var(--lesson); border-color: rgba(249,168,212,.45); }
-    .saved-card {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: .8rem;
-      background: #0b0a10;
-      cursor: pointer;
-    }
-    .saved-card.on { border-color: var(--gold); }
-    .saved-card .who {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.25rem;
-    }
-    .mini { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .35rem; }
-    .chip {
-      border: 1px solid var(--line);
-      background: #0b0a10;
-      border-radius: 999px;
-      padding: .28rem .65rem;
-      font-size: .82rem;
-      color: var(--ink);
-    }
-    .bar {
-      display: grid;
-      grid-template-columns: 92px 1fr 28px;
-      gap: .45rem;
-      align-items: center;
-      margin: .3rem 0;
-    }
-    .track { height: 8px; background: #1a1722; border-radius: 99px; overflow: hidden; }
-    .fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--violet)); }
-    .comparebox { display: grid; gap: .7rem; }
-    @media (min-width: 700px) { .comparebox { grid-template-columns: 1fr 1fr; } }
-    footer.note {
-      color: var(--muted);
-      font-size: .78rem;
-      text-align: center;
-      margin: 1.4rem 0 .4rem;
-    }
-    .install {
-      border: 1px dashed var(--line);
-      border-radius: 16px;
-      padding: .8rem;
-      margin: 0 0 1rem;
-      color: var(--muted);
-      font-size: .86rem;
-    }
-    .hero-line {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.45rem;
-      margin: .2rem 0 .8rem;
-    }
-    .shadow { color: var(--warn); }
-    .gift { color: var(--teal); }
-    .work { color: var(--violet); }
-    .letter-col { font-size: .86rem; color: var(--muted); }
-    .letter-col b { color: var(--ink); }
-    @media print {
-      body, body:before { background: #f7f1e6 !important; color: #1a1408 !important; }
-      .tabs, .install { display: none !important; }
-      .wrap { padding: 0; max-width: none; }
-      .panel { break-inside: avoid; border-color: #d4b46a; background: #fffaf0; }
-      .wordmark { color: #1a1408; -webkit-text-fill-color: #1a1408; animation: none; }
-      details.scard { open: true; }
-      details.scard[open], details.scard { display: block; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keystone · Jones Method</title>
+<style>
+  :root{
+    --bg:#0e0f13; --panel:#161821; --panel2:#1d2030; --line:#2a2e3d;
+    --txt:#e8eaf2; --muted:#8b90a5; --accent:#c9a227; --accent2:#7c5cbf;
+    --good:#4caf7a; --warn:#e0a14a; --bad:#d96b6b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);color:var(--txt);line-height:1.5;-webkit-font-smoothing:antialiased}
+  header{padding:18px 16px 14px;border-bottom:1px solid var(--line);position:sticky;top:0;
+    background:rgba(14,15,19,.92);backdrop-filter:blur(8px);z-index:10}
+  header h1{margin:0;font-size:20px;letter-spacing:.5px}
+  header .sub{color:var(--muted);font-size:12px;margin-top:2px}
+  main{max-width:680px;margin:0 auto;padding:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+  .card h2{margin:0 0 12px;font-size:15px;color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+  label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px}
+  input{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);
+    background:var(--panel2);color:var(--txt);font-size:15px}
+  input:focus{outline:none;border-color:var(--accent)}
+  .row{display:flex;gap:10px}
+  .row>div{flex:1}
+  button{width:100%;margin-top:14px;padding:13px;border:none;border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),#a8841f);color:#1a1400;font-weight:700;
+    font-size:15px;cursor:pointer}
+  button:active{transform:scale(.99)}
+  .core{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;
+    border-bottom:1px solid var(--line)}
+  .core:last-child{border-bottom:none}
+  .core .n{font-size:22px;font-weight:700;color:var(--accent)}
+  .core .t{font-size:13px;color:var(--muted)}
+  .tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;margin-left:6px;
+    background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+  .tag.master{background:rgba(124,92,191,.18);color:#c9b6f0;border-color:var(--accent2)}
+  .tag.karmic{background:rgba(224,161,74,.15);color:var(--warn);border-color:var(--warn)}
+  .reading{font-size:14px;color:var(--txt);margin-top:6px}
+  .reading b{color:var(--accent)}
+  .muted{color:var(--muted);font-size:12px}
+  .pill{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;margin:2px 4px 2px 0;
+    background:var(--panel2);border:1px solid var(--line)}
+  .pill.hot{background:rgba(201,162,39,.15);border-color:var(--accent);color:var(--accent)}
+  footer{text-align:center;color:var(--muted);font-size:11px;padding:18px 16px 40px}
+  .hidden{display:none}
+  .badge{font-size:11px;color:var(--muted)}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="app">
-      <div class="pill">Steve G. Jones · five core numbers</div>
-      <h1 class="wordmark">Keystone</h1>
-      <p class="tag">The outline of this lifetime. Calculated on this phone.</p>
-    </header>
-
-    <div class="install" id="installHint" hidden>
-      Add Keystone to your Home Screen to keep the charts offline. Nothing is uploaded.
-      <div class="actions"><button class="tiny" type="button" id="dismissInstall">Got it</button></div>
+<header>
+  <h1>Keystone</h1>
+  <div class="sub">Numerology · Jones method · runs on your device</div>
+</header>
+<main>
+  <div class="card">
+    <h2>Birth details</h2>
+    <label>Full name (birth certificate)</label>
+    <input id="name" value="Judith Anne Crighton" placeholder="First Middle Last">
+    <div class="row">
+      <div>
+        <label>Day</label>
+        <input id="day" type="number" min="1" max="31" value="27">
+      </div>
+      <div>
+        <label>Month</label>
+        <input id="month" type="number" min="1" max="12" value="12">
+      </div>
+      <div>
+        <label>Year</label>
+        <input id="year" type="number" min="1" max="2100" value="1957">
+      </div>
     </div>
-
-    <section class="panel" id="view-chart">
-      <p class="kicker">Cast a chart</p>
-      <h2>Birth-certificate name</h2>
-      <p class="hint">First, middle and last — every name on the certificate. Jones reads the birth name as the core. Nothing leaves this phone.</p>
-
-      <div class="row3">
-        <div>
-          <label for="first">First name</label>
-          <input id="first" autocomplete="off" autocapitalize="words" placeholder="First">
-        </div>
-        <div>
-          <label for="middle">Middle name</label>
-          <input id="middle" autocomplete="off" autocapitalize="words" placeholder="Optional">
-        </div>
-        <div>
-          <label for="last">Last name</label>
-          <input id="last" autocomplete="off" autocapitalize="words" placeholder="Surname">
-        </div>
-      </div>
-
-      <label for="dob">Birth date</label>
-      <input id="dob" type="date">
-      <p class="hint">Date is stored as you enter it. The calendar control uses your phone’s format.</p>
-
-      <details class="scard" style="margin-top:1rem">
-        <summary>Also using a current name?</summary>
-        <p class="hint">Married, chosen, or everyday name. Jones treats this as a minor overlay — the birth name stays the core.</p>
-        <label for="currentName">Current full name</label>
-        <input id="currentName" autocomplete="off" autocapitalize="words" placeholder="Optional">
-      </details>
-
-      <div class="tiles" id="tiles"></div>
-      <div class="inc" id="incLive" hidden></div>
-
-      <div class="actions">
-        <button class="primary" type="button" id="btnCast">Cast this chart</button>
-        <button class="ghost" type="button" id="btnExample1936">Jones’s example — 12 Oct 1936</button>
-        <button class="ghost" type="button" id="btnExampleAda">Ada Lovelace — 10 Dec 1815</button>
-      </div>
-    </section>
-
-    <section class="panel" id="view-reading" hidden>
-      <p class="kicker">The reading</p>
-      <h2 id="readTitle">The chart</h2>
-      <p class="hero-line" id="heroLine"></p>
-      <div class="strip" id="coreStrip"></div>
-      <div class="actions">
-        <button class="tiny" type="button" id="btnSave">Save</button>
-        <button class="tiny" type="button" id="btnPrint">Print</button>
-        <button class="tiny" type="button" id="btnNew">New chart</button>
-      </div>
-      <div class="cards" id="readingCards" style="margin-top:1rem"></div>
-    </section>
-
-    <section class="panel" id="view-cycles" hidden>
-      <p class="kicker">Cycles</p>
-      <h2>The weather of the year</h2>
-      <p class="hint">Personal Year uses birth month + birth day + the calendar year you choose. Jones keeps 11 and 22.</p>
-      <label for="cycleYear">Calendar year</label>
-      <input id="cycleYear" type="number" min="1900" max="2100" step="1">
-      <div id="cyclesOut"></div>
-    </section>
-
-    <section class="panel" id="view-saved" hidden>
-      <p class="kicker">Library</p>
-      <h2>Charts on this phone</h2>
-      <p class="hint">Tap a card to reopen it. Choose two for a His-and-Hers comparison — the way Jones read a pair.</p>
-      <div class="cards" id="savedList"></div>
-      <div class="actions">
-        <button class="tiny" type="button" id="btnCompare">Compare selected</button>
-        <button class="tiny" type="button" id="btnClearSaved">Clear library</button>
-      </div>
-      <div id="compareOut"></div>
-    </section>
-
-    <footer class="note">
-      Inspired by the teachings of Dr. Steve G. Jones. Original interpretations — not his course, and not a substitute for certification.
-      Masters kept: 11 and 22. Jones does not treat 33 as a master. Self-help reflection, not therapy. Calculated only on this device.
-    </footer>
+    <button id="cast">Cast this chart</button>
+    <div class="badge" id="status" style="margin-top:10px"></div>
   </div>
 
-  <nav class="tabs" aria-label="Sections">
-    <button class="on" data-view="chart" type="button">Chart</button>
-    <button data-view="reading" type="button">Reading</button>
-    <button data-view="cycles" type="button">Cycles</button>
-    <button data-view="saved" type="button">Saved</button>
-  </nav>
+  <div id="out" class="hidden">
+    <div class="card">
+      <h2>The five core numbers</h2>
+      <div id="cores"></div>
+    </div>
+    <div class="card">
+      <h2>Readings</h2>
+      <div id="readings"></div>
+    </div>
+    <div class="card">
+      <h2>Also on the chart</h2>
+      <div id="extras"></div>
+    </div>
+  </div>
+</main>
+<footer>Inspired by Dr. Steve G. Jones' calculation method. Original readings. Not his course material.</footer>
 
-  <script src="./meanings.js"></script>
-  <script src="./app.js"></script>
+<script>
+const PY = {A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
+const VOWELS = new Set("AEIOU");
+function reduce(n, keepMaster){
+  let x = Math.abs(n);
+  while(x > 9){
+    if(keepMaster && (x===11||x===22)) break;
+    x = String(x).split("").reduce((a,b)=>a+Number(b),0);
+  }
+  return x;
+}
+function compound(n){
+  let x = Math.abs(n), parts=[];
+  while(x>0){ parts.unshift(x%10); x=Math.floor(x/10); }
+  return parts;
+}
+function reduceName(name, mode){
+  let total=0, letters=[];
+  for(const ch of name.toUpperCase()){
+    if(!PY[ch]) continue;
+    const isV = VOWELS.has(ch);
+    if(mode==='vowels' && !isV) continue;
+    if(mode==='consonants' && isV) continue;
+    if(ch==='Y'){
+      const hasOtherV = [...name.toUpperCase()].some(c=>VOWELS.has(c));
+      if(mode==='vowels' && hasOtherV) continue;
+      if(mode==='consonants' && !hasOtherV) continue;
+    }
+    total += PY[ch]; letters.push(ch);
+  }
+  return {total, letters};
+}
+function nameParts(full){
+  return full.trim().split(/\s+/).filter(Boolean);
+}
+function calc(fullName, day, month, year){
+  const parts = nameParts(fullName);
+  const m = reduce(month,true), d = reduce(day,true), y = reduce(year,true);
+  const lpCompound = m+d+y;
+  const lp = reduce(lpCompound,true);
+  const bdCompound = day;
+  const bd = reduce(day,true);
+  let exprTotal=0, exprParts=[];
+  parts.forEach(p=>{ const r=reduceName(p,'all'); exprTotal+=reduce(r.total,true); exprParts.push({p, r:reduce(r.total,true)}); });
+  const expr = reduce(exprTotal,true);
+  let soulTotal=0; parts.forEach(p=>{ const r=reduceName(p,'vowels'); soulTotal+=r.total; });
+  const soul = reduce(soulTotal,true);
+  let persTotal=0; parts.forEach(p=>{ const r=reduceName(p,'consonants'); persTotal+=r.total; });
+  const pers = reduce(persTotal,true);
+  const mat = reduce(lp+expr,true);
+  const growth = parts[0] ? reduce(reduceName(parts[0],'all').total,true) : 0;
+  const py = reduce(m + reduce(day,true) + reduce(2+0+2+6,true), true);
+  const karmic = new Set([13,14,16,19]);
+  const flags = [];
+  [lpCompound, bdCompound, exprTotal, soulTotal, persTotal].forEach((v,i)=>{
+    if(karmic.has(v)) flags.push(['Life Path','Birthday','Expression','Soul Urge','Personality'][i]+' '+v);
+  });
+  const present = new Set();
+  parts.forEach(p=>[...p.toUpperCase()].forEach(c=>{ if(PY[c]) present.add(PY[c]); }));
+  const missing = [1,2,3,4,5,6,7,8,9].filter(n=>!present.has(n));
+  const freq={}; parts.forEach(p=>[...p.toUpperCase()].forEach(c=>{ if(PY[c]) freq[PY[c]]=(freq[PY[c]]||0)+1; }));
+  let passion=0, max=0; for(const k in freq){ if(freq[k]>max){max=freq[k];passion=+k;} }
+  const secret = missing.length===0 ? 9 : missing.length;
+  const cores=[lp,expr,pers].sort((a,b)=>a-b);
+  const eff = 10 - Math.min(9, (cores[2]-cores[0]));
+  return {lp,lpCompound,bd,bdCompound,expr,exprTotal,exprParts,soul,soulTotal,pers,persTotal,
+    mat,growth,py,flags,missing,passion,secret,eff,m,d,y};
+}
+const READ = {
+  lp:{1:"Pioneer — you lead by starting. Independence is your fuel; the lesson is to let others in without losing the spark.",
+      2:"Diplomat — you hold rooms together. Sensitivity is your gift; the shadow is absorbing what isn't yours.",
+      3:"Creator — expression is your native tongue. Joy is the work; the trap is scattering.",
+      4:"Builder — you make things last. Order is your strength; rigidity is the cost.",
+      5:"Messenger — change is your element. Freedom with a spine; the lesson is chosen limits.",
+      6:"Caretaker — you tend the hearth. Responsibility is love in action; the shadow is over-giving.",
+      7:"Seeker — the inner life is the road. Study, question, return with what you found.",
+      8:"Power — you handle resources and authority. Ambition with ethics; the trap is control.",
+      9:"Humanitarian — the wide view. Compassion that has thought it through; the lesson is release.",
+      11:"Illuminator (master) — intuition amplified. Insight that arrives before proof.",
+      22:"Master builder (master) — vision made practical. You can build what others only dream."},
+  bd:{1:"A 1 birthday: initiative stamped on the day. You arrive ready to begin.",
+      2:"A 2 birthday: cooperation is in the bones. Partnership finds you.",
+      3:"A 3 birthday: creativity arrives with the calendar. Expression is expected of you.",
+      4:"A 4 birthday: structure is your default. You build from day one.",
+      5:"A 5 birthday: restlessness is native. Change keeps the day alive.",
+      6:"A 6 birthday: responsibility is the gift. Home and care come naturally.",
+      7:"A 7 birthday: the inner life is the birthday present. Reflection is your rhythm.",
+      8:"An 8 birthday: power and material sense arrive early. You handle weight well.",
+      9:"A 9 birthday: the humanitarian view is stamped on the day. You see the whole.",
+      11:"An 11 birthday: intuition is the birthday gift. Insight before evidence.",
+      22:"A 22 birthday: master-builder energy from day one. Vision with a blueprint."},
+  expr:{1:"Destiny: to lead and initiate. The world asks you to start things.",
+        2:"Destiny: to cooperate and harmonise. The world asks you to connect.",
+        3:"Destiny: to create and express. The world asks you to speak.",
+        4:"Destiny: to build and organise. The world asks you to structure.",
+        5:"Destiny: to experience and change. The world asks you to move.",
+        6:"Destiny: to care and serve. The world asks you to tend.",
+        7:"Destiny: to seek and understand. The world asks you to know.",
+        8:"Destiny: to master resources. The world asks you to handle power.",
+        9:"Destiny: to give and complete. The world asks you to release.",
+        11:"Destiny (master): to illuminate. Insight is your calling.",
+        22:"Destiny (master): to build at scale. Vision made real is your work."},
+  soul:{1:"You want to lead from the inside. Independence is the heart's wish.",
+        2:"You want harmony and to be truly met. Partnership is the heart's wish.",
+        3:"You want to create and be heard. Expression is the heart's wish.",
+        4:"You want to build something solid. Security is the heart's wish.",
+        5:"You want freedom and experience. Movement is the heart's wish.",
+        6:"You want to love and be needed. A real hearth is the heart's wish.",
+        7:"You want truth and understanding. The inner life is the heart's wish.",
+        8:"You want achievement and worth. Mastery is the heart's wish.",
+        9:"You want to give and complete. Compassion is the heart's wish.",
+        11:"You want to see clearly. Intuition is the heart's wish.",
+        22:"You want to build what matters. Vision is the heart's wish."},
+  pers:{1:"The room meets initiative first. You arrive as a starter.",
+         2:"The room meets gentleness first. You arrive as a harmoniser.",
+         3:"The room meets expression first. You arrive as a spark.",
+         4:"The room meets steadiness first. You arrive as a foundation.",
+         5:"The room meets movement first. You arrive as a messenger.",
+         6:"The room meets care first. You arrive as a nurturer.",
+         7:"The room meets depth first. You arrive as a thinker.",
+         8:"The room meets authority first. You arrive as a force.",
+         9:"The room meets generosity first. You arrive as a giver.",
+         11:"The room meets presence first. You arrive as an illuminator.",
+         22:"The room meets vision first. You arrive as a builder."}
+};
+function tag(n, compound){
+  let t='';
+  if(n===11||n===22) t+='<span class="tag master">master '+n+'</span>';
+  if([13,14,16,19].includes(compound)) t+='<span class="tag karmic">karmic '+compound+'</span>';
+  return t;
+}
+function render(c){
+  const cores = [
+    ['Life Path', c.lp, c.lpCompound, 'lp'],
+    ['Birthday', c.bd, c.bdCompound, 'bd'],
+    ['Expression', c.expr, c.exprTotal, 'expr'],
+    ['Soul Urge', c.soul, c.soulTotal, 'soul'],
+    ['Personality', c.pers, c.persTotal, 'pers']
+  ];
+  document.getElementById('cores').innerHTML = cores.map(([label,n,comp,key])=>
+    `<div class="core"><div><div style="font-weight:600">${label} ${tag(n,comp)}</div>
+     <div class="t">${READ[key][n]||''}</div></div>
+     <div class="n">${comp}/${n}</div></div>`).join('');
+  const readings = [
+    ['Life Path', c.lp, 'lp'],['Birthday', c.bd, 'bd'],['Expression', c.expr, 'expr'],
+    ['Soul Urge', c.soul, 'soul'],['Personality', c.pers, 'pers']
+  ];
+  document.getElementById('readings').innerHTML = readings.map(([label,n,key])=>
+    `<div style="margin-bottom:12px"><b>${label} ${n}</b> — ${READ[key][n]||''}</div>`).join('');
+  const extras = [];
+  extras.push(`<span class="pill">Maturity ${c.mat}</span>`);
+  extras.push(`<span class="pill">Growth ${c.growth}</span>`);
+  extras.push(`<span class="pill hot">Personal Year 2026 → ${c.py}</span>`);
+  extras.push(`<span class="pill">Hidden Passion ${c.passion}</span>`);
+  extras.push(`<span class="pill">Secret Self ${c.secret}</span>`);
+  extras.push(`<span class="pill">Effectiveness ${c.eff}/10</span>`);
+  if(c.missing.length) extras.push(`<span class="pill">Missing: ${c.missing.join(', ')}</span>`);
+  else extras.push(`<span class="pill hot">No missing numbers 1–9</span>`);
+  if(c.flags.length) extras.push(`<div class="muted" style="margin-top:8px">Karmic curriculum: ${c.flags.join('; ')}</div>`);
+  document.getElementById('extras').innerHTML = extras.join(' ');
+  document.getElementById('out').classList.remove('hidden');
+}
+document.getElementById('cast').addEventListener('click', ()=>{
+  const name = document.getElementById('name').value.trim();
+  const day = +document.getElementById('day').value;
+  const month = +document.getElementById('month').value;
+  const year = +document.getElementById('year').value;
+  if(!name || !day || !month || !year){ document.getElementById('status').textContent='Fill in name and date.'; return; }
+  const c = calc(name, day, month, year);
+  render(c);
+  document.getElementById('status').textContent = 'Chart cast · nothing uploaded · saved on this device only.';
+});
+window.addEventListener('load', ()=> document.getElementById('cast').click());
+</script>
 </body>
 </html>
