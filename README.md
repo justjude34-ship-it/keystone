@@ -58,7 +58,7 @@ Inspired by Jones’s **method**. Interpretations are original. This is not his 
 - `manifest.json` / `sw.js` / `icon.svg` — PWA
 - `test-engine.mjs` — fixture audit (`node test-engine.mjs`)
 
-## Shop card (when you add it to Numerikey)
+## Shop card (when you add it to NumeraKey)
 
 - Kicker: Numerology · Jones method
 - Name: Keystone
