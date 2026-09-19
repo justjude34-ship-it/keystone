@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07080c">
+  <meta name="description" content="Keystone — five core numbers after the method of Dr. Steve G. Jones. Life Path, Expression, Soul Urge, Personality, Birthday. Calculated on this device.">
+  <title>Keystone — Jones Numerology</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07080c;
+      --card: #10131b;
+      --ink: #f4efe6;
+      --muted: #b7b0a4;
+      --gold: #d4b46a;
+      --teal: #7ec8c0;
+      --violet: #c4b5fd;
+      --line: rgba(212,180,106,.22);
+      --lesson: #f9a8d4;
+      --warn: #fdba74;
+      --good: #7ec8c0;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Outfit, system-ui, sans-serif;
+      line-height: 1.55;
+    }
+    body:before {
+      content: "";
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(720px 380px at 8% -10%, rgba(126,200,192,.14), transparent 55%),
+        radial-gradient(640px 360px at 96% 0%, rgba(196,181,253,.12), transparent 50%),
+        radial-gradient(500px 280px at 50% 100%, rgba(212,180,106,.08), transparent 55%);
+    }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 1rem 1rem 6.8rem; }
+    header.app { text-align: center; padding: .55rem 0 1rem; }
+    .pill {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .22rem .7rem;
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #d7d0c4;
+      margin-bottom: .4rem;
+    }
+    .wordmark {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.4rem, 10vw, 3.6rem);
+      margin: 0;
+      letter-spacing: .02em;
+      background: linear-gradient(120deg, var(--teal), var(--gold), var(--violet), var(--teal));
+      background-size: 220% 220%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmer 9s ease-in-out infinite;
+    }
+    .tag { color: var(--muted); margin: .25rem 0 0; font-size: .92rem; }
+    @keyframes shimmer { 0%,100%{background-position:0 50%} 50%{background-position:100% 50%} }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 1rem 1rem 1.1rem;
+      margin: 0 0 1rem;
+    }
+    .kicker {
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0 0 .3rem;
+    }
+    h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.7rem;
+      margin: .1rem 0 .55rem;
+      font-weight: 600;
+    }
+    h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.25rem;
+      margin: 0 0 .35rem;
+      color: var(--violet);
+    }
+    label {
+      display: block;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: .65rem 0 .28rem;
+    }
+    input, select {
+      width: 100%;
+      background: #0b0a10;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: .72rem .8rem;
+      font: inherit;
+    }
+    input:focus, select:focus { outline: 1px solid var(--gold); }
+    .row2, .row3 { display: grid; gap: .65rem; }
+    .row2 { grid-template-columns: 1fr 1fr; }
+    .row3 { grid-template-columns: 1fr 1fr 1fr; }
+    @media (max-width: 620px) {
+      .row2, .row3 { grid-template-columns: 1fr; }
+    }
+    .hint { color: var(--muted); font-size: .8rem; margin: .35rem 0 0; }
+    .actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .85rem; }
+    button { font: inherit; border: 0; border-radius: 999px; padding: .68rem 1.1rem; cursor: pointer; }
+    .primary {
+      background: linear-gradient(120deg, var(--teal), var(--gold));
+      color: #102019;
+      font-weight: 600;
+    }
+    .ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+    .tiny {
+      background: rgba(8,10,20,.55);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      padding: .45rem .8rem;
+      font-size: .82rem;
+    }
+    .lockrow {
+      display: flex; align-items: center; gap: .45rem;
+      margin-top: .45rem; color: var(--muted); font-size: .8rem;
+    }
+    .lockrow input { width: auto; }
+    .tiles { display: flex; flex-wrap: wrap; gap: .4rem; margin: .7rem 0 .2rem; min-height: 0; }
+    .tile {
+      background: #0b0a10;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: .35rem .5rem;
+      min-width: 2.6rem;
+      text-align: center;
+    }
+    .tile .L {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.25rem;
+      line-height: 1;
+      color: var(--teal);
+    }
+    .tile .v { font-size: .68rem; color: var(--gold); letter-spacing: .04em; }
+    .tile.V { border-color: rgba(126,200,192,.4); }
+    .tile.C { border-color: rgba(196,181,253,.3); }
+    .inc { display: grid; grid-template-columns: repeat(9, 1fr); gap: .28rem; margin: .55rem 0 .2rem; }
+    .inc i {
+      display: block; text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: .35rem .1rem;
+      font-style: normal;
+    }
+    .inc i b { display: block; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.05rem; }
+    .inc i.karmic { border-color: rgba(249,168,212,.5); color: var(--lesson); }
+    .inc i.above { border-color: rgba(126,200,192,.45); color: var(--good); }
+    .strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: .4rem;
+      margin: .8rem 0 .2rem;
+    }
+    @media (max-width: 620px) { .strip { grid-template-columns: repeat(3, 1fr); } }
+    .num {
+      background: #0b0a10;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: .55rem .3rem;
+      text-align: center;
+    }
+    .num b {
+      display: block;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.45rem;
+      color: var(--gold);
+      line-height: 1.1;
+    }
+    .num span {
+      display: block;
+      font-size: .62rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: .15rem;
+    }
+    .num.master { box-shadow: 0 0 0 1px var(--gold) inset; }
+    .num.karmic b { color: var(--lesson); }
+    .tabs {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: .3rem;
+      padding: .45rem .6rem calc(.55rem + env(safe-area-inset-bottom));
+      background: rgba(7,8,12,.92);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+    }
+    .tabs button {
+      border-radius: 14px;
+      padding: .55rem .2rem;
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+    .tabs button.on {
+      color: #102019;
+      background: linear-gradient(120deg, var(--teal), var(--gold));
+      font-weight: 600;
+    }
+    [hidden] { display: none !important; }
+    .cards { display: grid; gap: .65rem; }
+    .scard {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: .85rem;
+      background: #0b0a10;
+    }
+    .scard summary {
+      cursor: pointer;
+      list-style: none;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.2rem;
+    }
+    .scard summary::-webkit-details-marker { display: none; }
+    .scard .meta { color: var(--gold); font-size: .82rem; margin: .15rem 0 .45rem; }
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: .08rem .45rem;
+      font-size: .62rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-left: .35rem;
+      border: 1px solid var(--line);
+      color: var(--gold);
+      vertical-align: middle;
+    }
+    .badge.k { color: var(--lesson); border-color: rgba(249,168,212,.45); }
+    .saved-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: .8rem;
+      background: #0b0a10;
+      cursor: pointer;
+    }
+    .saved-card.on { border-color: var(--gold); }
+    .saved-card .who {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.25rem;
+    }
+    .mini { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .35rem; }
+    .chip {
+      border: 1px solid var(--line);
+      background: #0b0a10;
+      border-radius: 999px;
+      padding: .28rem .65rem;
+      font-size: .82rem;
+      color: var(--ink);
+    }
+    .bar {
+      display: grid;
+      grid-template-columns: 92px 1fr 28px;
+      gap: .45rem;
+      align-items: center;
+      margin: .3rem 0;
+    }
+    .track { height: 8px; background: #1a1722; border-radius: 99px; overflow: hidden; }
+    .fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--violet)); }
+    .comparebox { display: grid; gap: .7rem; }
+    @media (min-width: 700px) { .comparebox { grid-template-columns: 1fr 1fr; } }
+    footer.note {
+      color: var(--muted);
+      font-size: .78rem;
+      text-align: center;
+      margin: 1.4rem 0 .4rem;
+    }
+    .install {
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      padding: .8rem;
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+    .hero-line {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.45rem;
+      margin: .2rem 0 .8rem;
+    }
+    .shadow { color: var(--warn); }
+    .gift { color: var(--teal); }
+    .work { color: var(--violet); }
+    .letter-col { font-size: .86rem; color: var(--muted); }
+    .letter-col b { color: var(--ink); }
+    @media print {
+      body, body:before { background: #f7f1e6 !important; color: #1a1408 !important; }
+      .tabs, .install { display: none !important; }
+      .wrap { padding: 0; max-width: none; }
+      .panel { break-inside: avoid; border-color: #d4b46a; background: #fffaf0; }
+      .wordmark { color: #1a1408; -webkit-text-fill-color: #1a1408; animation: none; }
+      details.scard { open: true; }
+      details.scard[open], details.scard { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="app">
+      <div class="pill">Steve G. Jones · five core numbers</div>
+      <h1 class="wordmark">Keystone</h1>
+      <p class="tag">The outline of this lifetime. Calculated on this phone.</p>
+    </header>
+
+    <div class="install" id="installHint" hidden>
+      Add Keystone to your Home Screen to keep the charts offline. Nothing is uploaded.
+      <div class="actions"><button class="tiny" type="button" id="dismissInstall">Got it</button></div>
+    </div>
+
+    <section class="panel" id="view-chart">
+      <p class="kicker">Cast a chart</p>
+      <h2>Birth-certificate name</h2>
+      <p class="hint">First, middle and last — every name on the certificate. Jones reads the birth name as the core. Nothing leaves this phone.</p>
+
+      <div class="row3">
+        <div>
+          <label for="first">First name</label>
+          <input id="first" autocomplete="off" autocapitalize="words" placeholder="First">
+        </div>
+        <div>
+          <label for="middle">Middle name</label>
+          <input id="middle" autocomplete="off" autocapitalize="words" placeholder="Optional">
+        </div>
+        <div>
+          <label for="last">Last name</label>
+          <input id="last" autocomplete="off" autocapitalize="words" placeholder="Surname">
+        </div>
+      </div>
+
+      <label for="dob">Birth date</label>
+      <input id="dob" type="date">
+      <p class="hint">Date is stored as you enter it. The calendar control uses your phone’s format.</p>
+
+      <details class="scard" style="margin-top:1rem">
+        <summary>Also using a current name?</summary>
+        <p class="hint">Married, chosen, or everyday name. Jones treats this as a minor overlay — the birth name stays the core.</p>
+        <label for="currentName">Current full name</label>
+        <input id="currentName" autocomplete="off" autocapitalize="words" placeholder="Optional">
+      </details>
+
+      <div class="tiles" id="tiles"></div>
+      <div class="inc" id="incLive" hidden></div>
+
+      <div class="actions">
+        <button class="primary" type="button" id="btnCast">Cast this chart</button>
+        <button class="ghost" type="button" id="btnExample1936">Jones’s example — 12 Oct 1936</button>
+        <button class="ghost" type="button" id="btnExampleAda">Ada Lovelace — 10 Dec 1815</button>
+      </div>
+    </section>
+
+    <section class="panel" id="view-reading" hidden>
+      <p class="kicker">The reading</p>
+      <h2 id="readTitle">The chart</h2>
+      <p class="hero-line" id="heroLine"></p>
+      <div class="strip" id="coreStrip"></div>
+      <div class="actions">
+        <button class="tiny" type="button" id="btnSave">Save</button>
+        <button class="tiny" type="button" id="btnPrint">Print</button>
+        <button class="tiny" type="button" id="btnNew">New chart</button>
+      </div>
+      <div class="cards" id="readingCards" style="margin-top:1rem"></div>
+    </section>
+
+    <section class="panel" id="view-cycles" hidden>
+      <p class="kicker">Cycles</p>
+      <h2>The weather of the year</h2>
+      <p class="hint">Personal Year uses birth month + birth day + the calendar year you choose. Jones keeps 11 and 22.</p>
+      <label for="cycleYear">Calendar year</label>
+      <input id="cycleYear" type="number" min="1900" max="2100" step="1">
+      <div id="cyclesOut"></div>
+    </section>
+
+    <section class="panel" id="view-saved" hidden>
+      <p class="kicker">Library</p>
+      <h2>Charts on this phone</h2>
+      <p class="hint">Tap a card to reopen it. Choose two for a His-and-Hers comparison — the way Jones read a pair.</p>
+      <div class="cards" id="savedList"></div>
+      <div class="actions">
+        <button class="tiny" type="button" id="btnCompare">Compare selected</button>
+        <button class="tiny" type="button" id="btnClearSaved">Clear library</button>
+      </div>
+      <div id="compareOut"></div>
+    </section>
+
+    <footer class="note">
+      Inspired by the teachings of Dr. Steve G. Jones. Original interpretations — not his course, and not a substitute for certification.
+      Masters kept: 11 and 22. Jones does not treat 33 as a master. Self-help reflection, not therapy. Calculated only on this device.
+    </footer>
+  </div>
+
+  <nav class="tabs" aria-label="Sections">
+    <button class="on" data-view="chart" type="button">Chart</button>
+    <button data-view="reading" type="button">Reading</button>
+    <button data-view="cycles" type="button">Cycles</button>
+    <button data-view="saved" type="button">Saved</button>
+  </nav>
+
+  <script src="./meanings.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
